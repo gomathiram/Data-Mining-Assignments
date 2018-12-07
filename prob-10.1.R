@@ -1,0 +1,10 @@
+banks <- read.csv("~/Downloads/banks.csv")
+banks <- banks[, -c(1)]
+head(banks)
+banks$Financial.Condition <- factor(banks$Financial.Condition, levels = c(0, 1), labels = c("strong", "weak" ))
+logit.reg <- glm(Financial.Condition ~ ., data = banks, family = binomial(link = "logit"))
+options(scipen = 999)
+summary(logit.reg)
+predicted <- predict(logit.reg,banks, type = "response")
+predicted <- round(predicted, 3)
+data.frame("Probability" = predicted, "Predicted_Acceptance" = ifelse(predicted >= 0.5, 1, 0), "Actual_Acceptance" = banks$Financial.Condition)

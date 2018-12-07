@@ -1,0 +1,6 @@
+> BostonHousing$CRIM <- c(1:506)
+> BostonHousing$CHAS <- c(1:506)
+> BostonHousing$RM <- c(1:506)
+> BostonHousing$MEDV <- c(1:506)
+> Regression <- lm(BostonHousing$MEDV ~ BostonHousing$CRIM + BostonHousing$CHAS+ BostonHousing$RM)
+> summary(Regression)
